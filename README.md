@@ -1,9 +1,8 @@
 
-A Python package and command line tool for removing DAGMC tags such as graveyard and vacuum from a h5m DAGMC geometry.
+This is a minimal Python package that provides both **command line** and **API** interfaces for removing **multiple** tags from a DAGMC h5m file.
 
 This is useful for preparing the h5m file for visulisation where it is desirable to remove reflecting surfaces, vacuum materials and the graveyard(s) region.
 
-The package can be interacted with via the Python API or the command line usage.
 
 # Command line usage
 
@@ -65,6 +64,7 @@ bash install.sh
 python setup.py install
 ```
 
+
 # Achknowledgments
 
-The package is largely inspired by the DAGMC vis repository. 
+The package is largely inspired by the DAGMC-viz(https://github.com/svalinn/DAGMC-viz) repository. 
