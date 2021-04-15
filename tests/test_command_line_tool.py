@@ -1,24 +1,29 @@
 
-import json
 import os
 import unittest
 from pathlib import Path
 
-import cadquery as cq
-import paramak
 import pytest
 
 
 class TestReactor(unittest.TestCase):
 
-    # def setUp(self):
-    #     test_shape = paramak.RotateStraightShape(
-    #         points=[(0, 0), (0, 20), (20, 20)])
+    if Path('dagmc.h5m').is_file() is False:
+        test_h5m_file_url = 'https://github.com/Shimwell/fusion_example_for_openmc_using_paramak/raw/main/dagmc.h5m'
 
-    #     self.test_reactor = paramak.Reactor([test_shape])
+        urllib.request.urlretrieve(test_h5m_file_url, 'dagmc.h5m')
+
 
     def test_removal_of_graveyard(self):
+        os.system('remove-dagmc-tags -i dagmc.h5m -o dagmc_output.h5m -t mat:graveyard')
+        assert Path('dagmc_output.h5m').exists
+        assert Path('dagmc_output.h5m').stat < Path('dagmc.h5m').stat
+
     def test_removal_of_reflecting_tag(self):
+        os.system('remove-dagmc-tags -i dagmc.h5m -o dagmc_output.h5m -t reflective')
+        assert Path('dagmc_output.h5m').exists
+        assert Path('dagmc_output.h5m').stat < Path('dagmc.h5m').stat
+
     def test_removal_of_two_tags(self):
     def test_conversion_to_vtk(self):
     def test_conversion_to_vtk_without_graveyard(self):
