@@ -36,7 +36,7 @@ RUN apt-get --yes install libeigen3-dev && \
 
 # Clone and install MOAB
 
-RUN pip install --upgrade numpy cython && \
+RUN pip3 install --upgrade numpy cython && \
     mkdir MOAB && \
     cd MOAB && \
     mkdir build && \
