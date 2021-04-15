@@ -8,6 +8,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && \
     apt-get upgrade -y
 
+RUN apt-get install -y python3
+RUN apt-get install -y python3-pip
+
 # RUN apt-get install -y libgl1-mesa-glx libgl1-mesa-dev libglu1-mesa-dev \
 #                        freeglut3-dev libosmesa6 libosmesa6-dev \
 #                        libgles2-mesa-dev curl && \
