@@ -37,7 +37,7 @@ RUN apt-get --yes install libeigen3-dev && \
     apt-get --yes install git
 
 # Clone and install MOAB
-
+RUN pip3 install --upgrade numpy cython
 RUN mkdir MOAB && \
     cd MOAB && \
     git clone  --single-branch --branch 5.2.1 --depth 1 https://bitbucket.org/fathomteam/moab.git && \
