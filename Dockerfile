@@ -38,11 +38,10 @@ RUN apt-get --yes install libeigen3-dev && \
 
 # Clone and install MOAB
 
-RUN pip3 install --upgrade numpy cython && \
-    mkdir MOAB && \
+RUN mkdir MOAB && \
     cd MOAB && \
-    mkdir build && \
     git clone  --single-branch --branch 5.2.1 --depth 1 https://bitbucket.org/fathomteam/moab.git && \
+    mkdir build && \
     cd build && \
     cmake ../moab -DENABLE_HDF5=ON \
                   -DENABLE_NETCDF=ON \
@@ -50,17 +49,18 @@ RUN pip3 install --upgrade numpy cython && \
                   -DENABLE_BLASLAPACK=OFF \
                   -DBUILD_SHARED_LIBS=OFF \
                   -DCMAKE_INSTALL_PREFIX=/MOAB && \
-    make 2 && \
-    make 2 install && \
-    rm -rf * && \
+    make &&  \
+    make install && \
     cmake ../moab -DENABLE_HDF5=ON \
                   -DENABLE_PYMOAB=ON \
                   -DENABLE_FORTRAN=OFF \
                   -DBUILD_SHARED_LIBS=ON \
                   -DENABLE_BLASLAPACK=OFF \
                   -DCMAKE_INSTALL_PREFIX=/MOAB && \
-    make 2 && \
-    make 2 install
+    make install && \
+    cd pymoab && \
+    bash install.sh && \
+    python setup.py install
     
     # cd pymoab && \
     # bash install.sh && \
