@@ -1,15 +1,12 @@
 # This Dockerfile creates an enviroment for testing the python package
 # remove_dagmc_tags
 
-FROM ubuntu:18.04
+FROM continuumio/miniconda3:4.9.2
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y && \
     apt-get upgrade -y
-
-RUN apt-get install -y python3
-RUN apt-get install -y python3-pip
 
 # RUN apt-get install -y libgl1-mesa-glx libgl1-mesa-dev libglu1-mesa-dev \
 #                        freeglut3-dev libosmesa6 libosmesa6-dev \
@@ -37,7 +34,7 @@ RUN apt-get --yes install libeigen3-dev && \
     apt-get --yes install git
 
 # Clone and install MOAB
-RUN pip3 install --upgrade numpy cython
+RUN pip install --upgrade numpy cython
 RUN mkdir MOAB && \
     cd MOAB && \
     git clone  --single-branch --branch 5.2.1 --depth 1 https://bitbucket.org/fathomteam/moab.git && \
@@ -61,7 +58,3 @@ RUN mkdir MOAB && \
     cd pymoab && \
     bash install.sh && \
     python setup.py install
-    
-    # cd pymoab && \
-    # bash install.sh && \
-    # python setup.py install
