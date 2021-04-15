@@ -14,6 +14,7 @@ remove-dagmc-tags -i dagmc.h5m -o dagmc_no_graveyard.h5m -t graveyard
 - the ```-i``` or ```--input``` argument specifies the input h5m file
 - the ```-o``` or ```--output``` argument specifies the output h5m file
 - the ```-t``` or ```--tags``` argument specifies the tags to remove.
+- the ```-v``` or ```--verbose``` argument enables (true) or disables (false) the printing of additional details
 
 Multiple tags can also be removed. This example removes three tags from the dagmc.h5m file
 
@@ -23,8 +24,26 @@ remove-dagmc-tags -i dagmc.h5m -o dagmc_output.h5m -t mat:graveyard mat:vacuum r
 
 # Python API usage
 
+Removing a single tag called ```mat:graveyard``` from the dagmc.h5m file.
 ```python
-from remove_dagmc_tags import
+from remove_dagmc_tags import remove_tags
+
+remove_tags(
+    input='dagmc.h5m',
+    output='output.h5m',
+    tags='mat:graveyard'
+)
+```
+
+Removing two tags called ```mat:graveyard``` and ```reflective``` from the dagmc.h5m file.
+```python
+from remove_dagmc_tags import remove_tags
+
+remove_tags(
+    input='dagmc.h5m',
+    output='output.h5m',
+    tags='reflective'
+)
 ```
 
 # Installation

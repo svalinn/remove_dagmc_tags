@@ -23,11 +23,11 @@ class TestReactor(unittest.TestCase):
         remove_tags(
             input='dagmc.h5m',
             output='output.h5m',
-            tags='graveyard',
+            tags='mat:graveyard',
         )
 
-        assert 'graveyard' in find_tags('dagmc.h5m')
-        assert 'graveyard' not in find_tags('output.h5m')
+        assert 'mat:graveyard' in find_tags('dagmc.h5m')
+        assert 'mat:graveyard' not in find_tags('output.h5m')
         assert Path('output.h5m').stat().st_size < Path('dagmc.h5m').stat().st_size
 
     def test_removal_of_reflective_tag(self):
@@ -49,19 +49,20 @@ class TestReactor(unittest.TestCase):
         remove_tags(
             input='dagmc.h5m',
             output='output.h5m',
-            tags=['graveyard', 'reflective'],
+            tags=['mat:graveyard', 'reflective'],
         )
 
         assert 'reflective' in find_tags('dagmc.h5m')
         assert 'reflective' not in find_tags('output.h5m')
-        assert 'graveyard' in find_tags('dagmc.h5m')
-        assert 'graveyard' not in find_tags('output.h5m')
+        assert 'mat:graveyard' in find_tags('dagmc.h5m')
+        assert 'mat:graveyard' not in find_tags('output.h5m')
         assert Path('output.h5m').stat().st_size < Path('dagmc.h5m').stat().st_size
 
     def test_conversion_to_h5m(self):
         remove_tags(
             input='dagmc.h5m',
             output='output.h5m',
+            verbose=True
             # tags is not set so this is a save of the same file with no change
         )
         assert Path('output.h5m').stat().st_size == Path('dagmc.h5m').stat().st_size
@@ -78,7 +79,7 @@ class TestReactor(unittest.TestCase):
         remove_tags(
             input='dagmc.h5m',
             output='output.vtk',
-            tags=['graveyard'],
+            tags=['mat:graveyard'],
         )
         assert Path('output.vtk').is_file()
 
@@ -86,16 +87,16 @@ class TestReactor(unittest.TestCase):
         remove_tags(
             input='dagmc.h5m',
             output='output.vtk',
-            tags=['reflective'],
+            tags=['mat:graveyard'],
         )
         remove_tags(
             input='dagmc.h5m',
-            output='output_big.vtk',
-            tags=['graveyard', 'reflective'],
+            output='output_small.vtk',
+            tags=['mat:graveyard', 'reflective'],
         )
-        assert Path('output_big.vtk').is_file()
+        assert Path('output_small.vtk').is_file()
         assert Path('output.vtk').is_file()
-        assert Path('output.vtk').stat().st_size < Path('output_big.vtk').stat().st_size
+        assert Path('output.vtk').stat().st_size > Path('output_small.vtk').stat().st_size
 
 
 if __name__ == "__main__":
