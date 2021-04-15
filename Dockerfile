@@ -33,6 +33,7 @@ RUN apt-get --yes install libeigen3-dev && \
     apt-get --yes install libnetcdf-dev && \
     apt-get --yes install libtbb-dev && \
     apt-get --yes install libglfw3-dev && \
+    apt-get --yes install cmake && \
     apt-get --yes install git
 
 # Clone and install MOAB
