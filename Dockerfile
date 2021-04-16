@@ -63,3 +63,12 @@ RUN cd MOAB && \
     # is not available as "import pymoab" without them
     bash install.sh && \
     python setup.py install
+
+RUN pip install pytest-cov
+
+COPY setup.py setup.py
+COPY remove_dagmc_tags remove_dagmc_tags/
+COPY tests tests/
+COPY README.md README.md
+
+RUN python setup.py install
