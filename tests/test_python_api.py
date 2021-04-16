@@ -57,7 +57,7 @@ class TestReactor(unittest.TestCase):
             output='output.h5m',
             tags=['mat:graveyard', 'reflective'],
         )
-        assert returned_vars[0] == 'output.h5m'
+        assert returned_vars[0] == ['output.h5m']
         assert returned_vars[1] == ['mat:graveyard', 'reflective']
         assert 'reflective' in find_tags('dagmc.h5m')
         assert 'reflective' not in find_tags('output.h5m')
