@@ -107,7 +107,7 @@ def remove_tags(
             else:
                 names_not_remove_removed.append(name.lower())
 
-    names_to_remove = list(set(names_to_remove))
+    names_to_remove = list(sorted(set(names_to_remove)))
 
     if len(sets_to_remove) == 0:
         warnings.warn('No tags removed.')

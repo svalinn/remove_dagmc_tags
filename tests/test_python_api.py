@@ -12,6 +12,7 @@ from remove_dagmc_tags import remove_tags, find_tags
 
 class TestReactor(unittest.TestCase):
 
+    # just incase the h5m is not available locally
     if Path('dagmc.h5m').is_file() is False:
         test_h5m_file_url = 'https://github.com/Shimwell/fusion_example_for_openmc_using_paramak/raw/main/dagmc.h5m'
 
