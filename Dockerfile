@@ -38,7 +38,9 @@ RUN apt-get --yes install libeigen3-dev && \
 RUN pip install --upgrade numpy cython
 RUN mkdir MOAB && \
     cd MOAB && \
-    git clone  --single-branch --branch 5.2.1 --depth 1 https://bitbucket.org/fathomteam/moab.git && \
+    git clone  --single-branch --branch 5.2.1 --depth 1 https://bitbucket.org/fathomteam/moab.git
+
+RUN cd MOAB && \
     mkdir build && \
     cd build && \
     cmake ../moab -DENABLE_HDF5=ON \
@@ -57,5 +59,7 @@ RUN mkdir MOAB && \
                   -DCMAKE_INSTALL_PREFIX=/MOAB && \
     make install && \
     cd pymoab && \
+    # not quite sure why these two lines are needed but it appears that pymoab
+    # is not available as "import pymoab" without them
     bash install.sh && \
     python setup.py install
