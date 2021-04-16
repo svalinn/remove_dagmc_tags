@@ -1,3 +1,7 @@
+[![N|Python](https://www.python.org/static/community_logos/python-powered-w-100x40.png)](https://www.python.org)
+[![docker based CI](https://github.com/Shimwell/remove_dagmc_tags/actions/workflows/docker_ci.yml/badge.svg)](https://github.com/Shimwell/remove_dagmc_tags/actions/workflows/docker_ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/remove-dagmc-tags?color=brightgreen&label=pypi&logo=grebrightgreenen&logoColor=green)](https://pypi.org/project/remove-dagmc-tags/)
+[![codecov](https://codecov.io/gh/shimwell/remove_dagmc_tags/branch/main/graph/badge.svg)](https://codecov.io/gh/shimwell/remove_dagmc_tags)
 
 This is a minimal Python package that provides both **command line** and **API** interfaces for removing **multiple** tags from a DAGMC h5m file.
 
