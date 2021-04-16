@@ -1,0 +1,45 @@
+#!/usr/bin/python
+
+from remove_dagmc_tags import remove_tags
+from pathlib import Path
+import argparse
+
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        '-t', '--tags',
+        nargs='*',
+        default=['graveyard'],
+        help="The tag or tags to remove."
+    )
+
+    parser.add_argument(
+        '-i', '--input',
+        type=Path, default=None,
+        help='Input h5m file',
+        required=True
+    )
+
+    parser.add_argument(
+        '-o', '--output',
+        type=Path, default='dagmc_removed_tag.h5m',
+        help='Output h5m file with removed tags'
+    )
+
+    parser.add_argument(
+        '-v', '--verbose',
+        type=bool, default=True,
+        help='Print additional details of the opperation'
+    )
+
+    args = parser.parse_args()
+
+    remove_tags(
+        input=args.input,
+        output=args.output,
+        tags=args.tags,
+        verbose=args.verbose
+    )
