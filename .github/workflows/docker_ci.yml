@@ -14,5 +14,5 @@ jobs:
         mkdir share
         sudo apt-get install -y curl
         docker build -t pymoab .
-        docker run -v "$PWD/share:/share"
+        docker run -v "$PWD/share:/share" pymoab
         curl -s https://codecov.io/bash | bash
