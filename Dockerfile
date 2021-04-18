@@ -8,22 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && \
     apt-get upgrade -y
 
-# RUN apt-get install -y libgl1-mesa-glx libgl1-mesa-dev libglu1-mesa-dev \
-#                        freeglut3-dev libosmesa6 libosmesa6-dev \
-#                        libgles2-mesa-dev curl && \
-#                        apt-get clean
-
-
-# # Install neutronics dependencies from Debian package manager
-# RUN if [ "$include_neutronics" = "true" ] ; \
-#     then echo installing with include_neutronics=true ; \
-#          apt-get install -y \
-#             wget git gfortran g++ cmake \
-#             mpich libmpich-dev libhdf5-serial-dev libhdf5-mpich-dev \
-#             imagemagick ; \
-#     fi
-
-# # install addition packages required for MOAB
+# install addition packages required for MOAB
 RUN apt-get --yes install libeigen3-dev && \
     apt-get --yes install libblas-dev && \
     apt-get --yes install liblapack-dev && \
@@ -72,3 +57,5 @@ COPY tests tests/
 COPY README.md README.md
 
 RUN python setup.py install
+
+CMD pytest tests -v --cov=remove_dagmc_tags --cov-report term --cov-report xml ; mv coverage.xml /share/coverage.xml
