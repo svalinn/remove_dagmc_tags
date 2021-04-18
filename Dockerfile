@@ -56,6 +56,6 @@ COPY remove_dagmc_tags remove_dagmc_tags/
 COPY tests tests/
 COPY README.md README.md
 
-RUN python setup.py install
+RUN python setup.py develop
 
 CMD pytest tests -v --cov=remove_dagmc_tags --cov-report term --cov-report xml ; mv coverage.xml /share/coverage.xml
