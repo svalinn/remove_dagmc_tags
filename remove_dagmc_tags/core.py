@@ -63,7 +63,7 @@ def remove_tags(
     tags: Optional[Union[str, List[str]]] = 'graveyard',
     verbose: Optional[bool] = False,
 ):
-# -> List[List[str], List[str], List[str]]:
+    # -> List[List[str], List[str], List[str]]:
     """Removes a specific tag from a dagmc h5m file and saves the remaining
     geometry as a new h5m file. Useful for visulising the geometry by removing
     the graveyard tag and then the vtk file can be made without a bounding box
@@ -112,7 +112,7 @@ def remove_tags(
     if len(sets_to_remove) == 0:
         warnings.warn('No tags removed.')
 
-    # prints out 
+    # prints out
     if verbose is True:
         print()
         for name in sorted(set(group_names)):

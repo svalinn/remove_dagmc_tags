@@ -21,7 +21,8 @@ class TestReactor(unittest.TestCase):
 
         assert 'mat:graveyard' in find_tags('tests/dagmc.h5m')
         assert 'mat:graveyard' not in find_tags('output.h5m')
-        assert Path('output.h5m').stat().st_size < Path('tests/dagmc.h5m').stat().st_size
+        assert Path('output.h5m').stat().st_size < Path(
+            'tests/dagmc.h5m').stat().st_size
 
     def test_removal_of_reflective_tag(self):
         """removes a single tag called reflective, passed in as a list of one"""
@@ -36,7 +37,8 @@ class TestReactor(unittest.TestCase):
 
         assert 'reflective' in find_tags('tests/dagmc.h5m')
         assert 'reflective' not in find_tags('output.h5m')
-        assert Path('output.h5m').stat().st_size < Path('tests/dagmc.h5m').stat().st_size
+        assert Path('output.h5m').stat().st_size < Path(
+            'tests/dagmc.h5m').stat().st_size
 
     def test_removal_of_two_tags(self):
         """removes two tags called graveyard and reflective"""
@@ -54,7 +56,8 @@ class TestReactor(unittest.TestCase):
         assert 'reflective' not in find_tags('output.h5m')
         assert 'mat:graveyard' in find_tags('tests/dagmc.h5m')
         assert 'mat:graveyard' not in find_tags('output.h5m')
-        assert Path('output.h5m').stat().st_size < Path('tests/dagmc.h5m').stat().st_size
+        assert Path('output.h5m').stat().st_size < Path(
+            'tests/dagmc.h5m').stat().st_size
 
     def test_removal_of_two_tags_and_vtk_production(self):
         """removes two tags called graveyard and reflective"""
@@ -72,9 +75,10 @@ class TestReactor(unittest.TestCase):
         assert 'reflective' not in find_tags('output.h5m')
         assert 'mat:graveyard' in find_tags('tests/dagmc.h5m')
         assert 'mat:graveyard' not in find_tags('output.h5m')
-        assert Path('output.h5m').stat().st_size < Path('tests/dagmc.h5m').stat().st_size
+        assert Path('output.h5m').stat().st_size < Path(
+            'tests/dagmc.h5m').stat().st_size
 
-    # If processed file is the same as the input file then this test can be performed   
+    # If processed file is the same as the input file then this test can be performed
     # def test_conversion_to_h5m(self):
     #     remove_tags(
     #         input='tests/dagmc.h5m',
