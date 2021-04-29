@@ -1,8 +1,9 @@
 #!/usr/bin/python
 
-from remove_dagmc_tags import remove_tags
-from pathlib import Path
 import argparse
+from pathlib import Path
+
+from remove_dagmc_tags import remove_tags
 
 
 if __name__ == '__main__':
