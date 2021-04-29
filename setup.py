@@ -5,13 +5,12 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="remove_dagmc_tags",
-    version="0.0.2",
-    author="Jonathan Shimwell",
-    author_email="mail@jshimwell.com",
+    version="0.0.3",
+    author="Svalinn development team",
     description="A tool for selectively removing tags such as the graveyard from DAGMC h5m files.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/shimwell/remove_dagmc_tags",
+    url="https://github.com/svalinn/remove_dagmc_tags",
     packages=setuptools.find_packages(),
     zip_safe=True,
     package_dir={"remove_dagmc_tags": "remove_dagmc_tags"},
@@ -23,8 +22,10 @@ setuptools.setup(
             "LICENSE",
         ]
     },
+    install_requires=[
+        "numpy"
+    ],
+    # pymoab is also required for this package but is not available via pip
+    # install
     tests_require=["pytest-cov"],
-    # install_requires=[
-    #     # 'pymoab' is is required for this package but is not available via pip install at the moment
-    # ],
 )
