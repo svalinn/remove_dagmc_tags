@@ -24,7 +24,8 @@ setuptools.setup(
     },
     install_requires=[
         "numpy"
-        ],
-    #    pymoab is also required for this package but is not available via pip install
+    ],
+    # pymoab is also required for this package but is not available via pip
+    # install
     tests_require=["pytest-cov"],
 )
