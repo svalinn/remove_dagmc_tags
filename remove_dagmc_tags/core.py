@@ -9,7 +9,6 @@ from pymoab.types import MBENTITYSET
 
 
 def create_moab_core(input):
-
     moab_core = core.Core()
     moab_core.load_file(str(input))
 
@@ -71,19 +70,16 @@ def remove_tags(
     https://github.com/svalinn/DAGMC-viz source code
 
     Arguments:
-        input: The name of the h5m file to remove the dagmc tags from
+        input: The name of the h5m file to remove the dagmc tags from.
         output: The name of the outfile file(s) with the tags removed.
-            Supported extentions are .vtk and .h5m
-        tags: The tag(S) to be removed.
-        verbose: Print out additional information (True) or not (False)
+            Supported extentions are .vtk and .h5m.
+        tags: The tag(s) to be removed.
+        verbose: Print out additional information (True) or not (False).
 
     Returns:
         filename(s) of the output files produced, names of tags removed, names
-        of all the tags available
+        of all the tags available.
     """
-    if verbose is True:
-        print()
-        print('tags_to_remove', tags)
 
     moab_core, group_categories, tag_name = create_moab_core(input)
 
@@ -93,6 +89,11 @@ def remove_tags(
         tags_to_remove = [tags]
     else:
         tags_to_remove = tags
+
+    if verbose is True:
+        print('\ntag names that will be remove:')
+        for tag in tags_to_remove:
+            print('    ', tag, end='\n\n')
 
     # Find the EntitySet whose name includes tag provided
     sets_to_remove = []
@@ -114,12 +115,12 @@ def remove_tags(
 
     # prints out
     if verbose is True:
-        print()
+        print('tag names found in h5m file:')
         for name in sorted(set(group_names)):
             if str(name.lower()) in tags_to_remove:
-                print(str(name.lower()), ' --- >  Removing tag')
+                print('    ', str(name.lower()), ' ---- >  Removing tag')
             else:
-                print(str(name.lower()))
+                print('    ', str(name.lower()))
         print()
 
     # Remove the EntitySet from the data.
@@ -131,7 +132,7 @@ def remove_tags(
 
     for out in output:
         if verbose is True:
-            print('Writing', out)
+            print('Writing', out, end='\n\n')
         moab_core.write_file(str(out), output_sets=groups_to_write)
 
     return output, names_to_remove, sorted(set(group_names))

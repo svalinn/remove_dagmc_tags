@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="remove_dagmc_tags",
-    version="0.0.3",
+    version="0.0.4",
     author="Svalinn development team",
     description="A tool for selectively removing tags such as the graveyard from DAGMC h5m files.",
     long_description=long_description,
@@ -20,6 +20,9 @@ setuptools.setup(
             "requirements.txt",
             "README.md",
             "LICENSE",
+        ],
+        "tests": [
+            "dagmc.h5m"
         ]
     },
     install_requires=[
