@@ -13,7 +13,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '-t', '--tags',
         nargs='*',
-        default=['graveyard'],
+        default=['mat:graveyard'],
         help="The tag or tags to remove."
     )
 
