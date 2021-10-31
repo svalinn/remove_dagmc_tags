@@ -13,7 +13,7 @@ from the geometry before viewing the vtk file.
 
 Perhaps the most common use of this program is to remove a DAGMC graveyard.
 ```bash
-remove-dagmc-tags -i dagmc.h5m -o dagmc_no_graveyard.h5m -t graveyard
+remove-dagmc-tags -i dagmc.h5m -o dagmc_no_graveyard.h5m -t mat:graveyard
 ```
 
 - the ```-i``` or ```--input``` argument specifies the input h5m file
@@ -43,7 +43,7 @@ remove_tags(
 ```
 
 Removing two tags called ```mat:graveyard``` and ```reflective``` from the
-dagmc.h5m file and saves the result as a vtk file and h5m file.
+dagmc.h5m file and saving the result as a vtk file and h5m file.
 
 ```python
 from remove_dagmc_tags import remove_tags
