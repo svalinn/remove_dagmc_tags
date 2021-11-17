@@ -5,6 +5,7 @@ FROM continuumio/miniconda3:4.9.2
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN apt-get --allow-releaseinfo-change update
 RUN apt-get update -y && \
     apt-get upgrade -y
 
