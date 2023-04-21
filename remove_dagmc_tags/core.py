@@ -1,4 +1,3 @@
-
 import warnings
 from pathlib import Path
 from typing import List, Optional, Union
@@ -22,14 +21,17 @@ def create_moab_core(input):
     group_tag_values = np.array(["Group"])
 
     # Retrieve all EntitySets with a category tag of the user input value.
-    group_categories = list(moab_core.get_entities_by_type_and_tag(
-                            root, MBENTITYSET, tag_category, group_tag_values))
+    group_categories = list(
+        moab_core.get_entities_by_type_and_tag(
+            root, MBENTITYSET, tag_category, group_tag_values
+        )
+    )
 
     return moab_core, group_categories, tag_name
 
 
 def find_tags(
-    input: Optional[str] = 'dagmc.h5m',
+    input: Optional[str] = "dagmc.h5m",
 ) -> List[str]:
     """Removes a specific tag from a dagmc h5m file and saves the remaining
     geometry as a new h5m file. Useful for visulising the geometry by removing
@@ -57,9 +59,9 @@ def find_tags(
 
 
 def remove_tags(
-    input: Optional[str] = 'dagmc.h5m',
-    output: Optional[Union[str, List[str]]] = 'dagmc_removed_tag.vtk',
-    tags: Optional[Union[str, List[str]]] = 'graveyard',
+    input: Optional[str] = "dagmc.h5m",
+    output: Optional[Union[str, List[str]]] = "dagmc_removed_tag.vtk",
+    tags: Optional[Union[str, List[str]]] = "graveyard",
     verbose: Optional[bool] = False,
 ):
     # -> List[List[str], List[str], List[str]]:
@@ -91,9 +93,9 @@ def remove_tags(
         tags_to_remove = tags
 
     if verbose is True:
-        print('\ntag names that will be removed:')
+        print("\ntag names that will be removed:")
         for tag in tags_to_remove:
-            print('    ', tag, end='\n\n')
+            print("    ", tag, end="\n\n")
 
     # Find the EntitySet whose name includes tag provided
     sets_to_remove = []
@@ -111,28 +113,29 @@ def remove_tags(
     names_to_remove = list(sorted(set(names_to_remove)))
 
     if len(sets_to_remove) == 0:
-        warnings.warn('No tags removed.')
+        warnings.warn("No tags removed.")
 
     # prints out
     if verbose is True:
-        print('tag names found in h5m file:')
+        print("tag names found in h5m file:")
         for name in sorted(set(group_names)):
             if str(name.lower()) in tags_to_remove:
-                print('    ', str(name.lower()), ' ---- >  Removing tag')
+                print("    ", str(name.lower()), " ---- >  Removing tag")
             else:
-                print('    ', str(name.lower()))
+                print("    ", str(name.lower()))
         print()
 
     # Remove the EntitySet from the data.
     groups_to_write = [
-        group_set for group_set in group_categories if group_set not in sets_to_remove]
+        group_set for group_set in group_categories if group_set not in sets_to_remove
+    ]
 
     if isinstance(output, (str, Path)):
         output = [output]
 
     for out in output:
         if verbose is True:
-            print('Writing', out, end='\n\n')
+            print("Writing", out, end="\n\n")
         moab_core.write_file(str(out), output_sets=groups_to_write)
 
     return output, names_to_remove, sorted(set(group_names))

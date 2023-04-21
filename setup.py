@@ -14,20 +14,16 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     zip_safe=True,
     package_dir={"remove_dagmc_tags": "remove_dagmc_tags"},
-    scripts=['remove_dagmc_tags/remove-dagmc-tags'],
+    scripts=["remove_dagmc_tags/remove-dagmc-tags"],
     package_data={
         "remove_dagmc_tags": [
             "requirements.txt",
             "README.md",
             "LICENSE",
         ],
-        "tests": [
-            "dagmc.h5m"
-        ]
+        "tests": ["dagmc.h5m"],
     },
-    install_requires=[
-        "numpy"
-    ],
+    install_requires=["numpy"],
     # pymoab is also required for this package but is not available via pip
     # install
     tests_require=["pytest-cov"],
