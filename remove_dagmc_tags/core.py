@@ -91,7 +91,7 @@ def remove_tags(
         tags_to_remove = tags
 
     if verbose is True:
-        print('\ntag names that will be remove:')
+        print('\ntag names that will be removed:')
         for tag in tags_to_remove:
             print('    ', tag, end='\n\n')
 
